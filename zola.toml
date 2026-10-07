@@ -28,3 +28,6 @@ style = "class"
 email = "talenttb18@gmail.com"
 theme_switcher = false
 copy_button = false
+menu = [
+  { name = "文章", url = "posts", trailing_slash = true },
+]
