@@ -1,0 +1,15 @@
+#+title: Zola Cheatsheet
+
+* 隱藏／刪除文章
+| 目的       | 在 org 裡怎麼做                                | 之後要做的                        |
+|------------+------------------------------------------------+-----------------------------------|
+| 暫時隱藏   | 標題改成 =* TODO 標題=（改回或改 DONE 就公開）  | 存檔即可（md 會帶 =draft = true=） |
+| 暫時隱藏   | =:PROPERTIES:= 加 =:EXPORT_HUGO_DRAFT: true=    | 存檔即可                          |
+| 不匯出     | 標題加 tag =:noexport:=                         | =./scripts/org2md.sh --clean=     |
+| 刪除       | 刪掉該 subtree 或整個 org 檔                    | =./scripts/org2md.sh --clean=     |
+
+- 預覽草稿：=zola serve --drafts=
+
+* org2md.sh
+- =./scripts/org2md.sh=：append，匯出／覆蓋 md，不刪檔
+- =./scripts/org2md.sh --clean=：刪掉 =content/= 裡匯出的 md（保留 =_index.md=）後全部重產

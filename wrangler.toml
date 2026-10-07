@@ -1,0 +1,9 @@
+name = "liyu-blog"
+compatibility_date = "2026-10-07"
+
+[build]
+command = "bash ./scripts/cf-workers-build.sh"
+
+[assets]
+directory = "./public"
+not_found_handling = "404-page"  # 找不到頁面時顯示 Zola 產生的 404.html
