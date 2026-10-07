@@ -13,3 +13,29 @@
 * org2md.sh
 - =./scripts/org2md.sh=：append，匯出／覆蓋 md，不刪檔
 - =./scripts/org2md.sh --clean=：刪掉 =content/= 裡匯出的 md（保留 =_index.md=）後全部重產
+
+* 標題 tag
+- 寫在標題最後：=* 標題 :@blogging:emacs:=
+- =@= 開頭 → categories；沒有 =@= → tags
+- 上例匯出成 =categories = ["blogging"]=、=tags = ["emacs"]=
+
+* PROPERTIES 可用的 key
+| key                    | 例            | 匯出成                       |
+|------------------------+---------------+------------------------------|
+| EXPORT_FILE_NAME       | hello-zola    | md 檔名（必填）              |
+| EXPORT_DATE            | 2026-10-07    | date                         |
+| EXPORT_HUGO_LASTMOD    | 2026-10-08    | updated                      |
+| EXPORT_HUGO_SLUG       | my-slug       | slug（網址）                 |
+| EXPORT_HUGO_DRAFT      | true          | draft                        |
+| EXPORT_TITLE           | 另一個標題    | title（預設用標題文字）      |
+| EXPORT_DESCRIPTION     | 一句摘要      | description                  |
+| EXPORT_AUTHOR          | Someone       | author                       |
+| EXPORT_HUGO_WEIGHT     | 10            | weight（排序）               |
+| EXPORT_HUGO_ALIASES    | /old/a /old/b | aliases（舊網址轉址）        |
+| EXPORT_HUGO_TAGS       | a b           | tags（會蓋掉標題上的 tag）   |
+| EXPORT_HUGO_CATEGORIES | x             | categories（會蓋掉 @ tag）   |
+| EXPORT_HUGO_LAYOUT     | custom.html   | template（指定模板）         |
+
+* 中文檔名
+- =EXPORT_FILE_NAME= 可用中文：md 檔名是中文，網址會轉成拼音（=/posts/zhong-wen-dang-ming/=）
+- 自己決定網址：加 =EXPORT_HUGO_SLUG=（=EXPORT_ZOLA_SLUG= 沒作用）
