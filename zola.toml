@@ -28,6 +28,8 @@ style = "class"
 email = "talenttb18@gmail.com"
 theme_switcher = false
 copy_button = false
+long_date_format = "yyyy-MM-dd"   # 文章列表（首頁、/posts/、tag 頁）
+short_date_format = "yyyy-MM-dd"  # 文章頁裡的日期
 menu = [
   { name = "文章", url = "posts", trailing_slash = true },
 ]
