@@ -1,0 +1,129 @@
+/* 文章版面：側邊目錄、hottip 提示框、角色對話（org 的 #+begin_heron / #+begin_me / #+begin_hottip） */
+
+/* ---------- 側邊目錄：寬螢幕固定在文章左側，窄螢幕維持 tabi 原本放在文章上方 ---------- */
+@media (min-width: 1300px) {
+    article.h-entry > .toc-container {
+        position: fixed;
+        top: 7rem;
+        left: max(1rem, calc(50vw - 380px - 15rem));  /* 文章欄約 760px 寬，目錄放在它左邊 2rem */
+        width: 13rem;
+        max-height: calc(100vh - 9rem);
+        overflow-y: auto;
+        margin: 0;
+        font-size: 0.85rem;
+    }
+    article.h-entry > .toc-container h3 {
+        margin-top: 0;
+        color: var(--meta-color);
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+    }
+    article.h-entry > .toc-container ul {
+        padding-inline-start: 1rem;
+    }
+}
+
+/* ---------- 角色對話：整個 div 是泡泡，頭像在泡泡外側 ---------- */
+.heron,
+.me {
+    --avatar-size: 56px;
+    --avatar-gap: 16px;
+    position: relative;
+    margin: 1.5rem 0;
+    margin-inline-start: calc(var(--avatar-size) + var(--avatar-gap));
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--divider-color);
+    border-radius: 10px;
+    background-color: var(--bg-0);
+}
+.heron::before,
+.me::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: calc(-1 * (var(--avatar-size) + var(--avatar-gap)));
+    width: var(--avatar-size);
+    height: var(--avatar-size);
+    border-radius: 50%;
+    background: center / cover no-repeat;
+}
+.heron::before { background-image: url("avatar-heron.svg"); }
+.me::before    { background-image: url("avatar-me.svg"); }
+
+/* 泡泡的小尾巴，指向頭像 */
+.heron::after,
+.me::after {
+    content: "";
+    position: absolute;
+    top: 20px;
+    left: -7px;
+    width: 12px;
+    height: 12px;
+    border-left: 1px solid var(--divider-color);
+    border-bottom: 1px solid var(--divider-color);
+    background-color: var(--bg-0);
+    transform: rotate(45deg);
+}
+
+/* #+attr_html: :class right → 頭像換到右邊 */
+.heron.right,
+.me.right {
+    margin-inline-start: 0;
+    margin-inline-end: calc(var(--avatar-size) + var(--avatar-gap));
+}
+.heron.right::before,
+.me.right::before {
+    left: auto;
+    right: calc(-1 * (var(--avatar-size) + var(--avatar-gap)));
+}
+.heron.right::after,
+.me.right::after {
+    left: auto;
+    right: -7px;
+    transform: rotate(-135deg);
+}
+
+.heron > :first-child,
+.me > :first-child,
+.hottip > :first-child { margin-top: 0; }
+.heron > :last-child,
+.me > :last-child,
+.hottip > :last-child { margin-bottom: 0; }
+
+/* ---------- hottip：蒼鷺的提示框 ---------- */
+.hottip {
+    position: relative;
+    margin: 1.5rem 0;
+    padding: 3.6rem 1.1rem 0.9rem;
+    border: 1px solid var(--divider-color);
+    border-inline-start: 4px solid var(--primary-color);
+    border-radius: 8px;
+    background-color: var(--bg-0);
+}
+.hottip::before {
+    content: "";
+    position: absolute;
+    top: 0.8rem;
+    left: 1rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: center / cover no-repeat url("avatar-heron.svg");
+}
+.hottip::after {
+    content: "蒼鷺的 hot tip";
+    position: absolute;
+    top: 0.8rem;
+    left: calc(1rem + 40px + 0.6rem);
+    line-height: 40px;
+    font-weight: 700;
+}
+
+/* ---------- 手機：頭像縮小 ---------- */
+@media (max-width: 600px) {
+    .heron,
+    .me {
+        --avatar-size: 40px;
+        --avatar-gap: 12px;
+    }
+}

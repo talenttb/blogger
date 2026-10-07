@@ -33,3 +33,5 @@ short_date_format = "yyyy-MM-dd"  # 文章頁裡的日期
 menu = [
   { name = "文章", url = "posts", trailing_slash = true },
 ]
+toc = true                          # 文章目錄；post-layout.css 在寬螢幕把它固定到左側
+stylesheets = ["post-layout.css"]   # static/post-layout.css：側邊目錄、hottip、角色對話
