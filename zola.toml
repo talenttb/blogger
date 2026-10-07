@@ -1,5 +1,5 @@
 # The URL the site will be built for
-base_url = "https://liyu-blog.example.workers.dev"  # 佔位值：換成實際的 workers.dev 子網域
+base_url = "https://liyu-blog.talenttb18.workers.dev"
 title = "流水帳"
 default_language = "zh-Hant"
 theme = "tabi"
