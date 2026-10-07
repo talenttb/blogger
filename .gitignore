@@ -1,0 +1,10 @@
+.DS_Store
+.idea
+*.log
+tmp/
+
+public/
+
+# 討論紀錄只留本機，只追蹤資料夾本身
+lab/*
+!lab/.gitkeep

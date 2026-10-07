@@ -1,0 +1,30 @@
+# The URL the site will be built for
+base_url = "https://example.com"
+title = "Blog"
+default_language = "zh-Hant"
+theme = "tabi"
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = false
+
+# 對應 ox-zola 匯出的 [taxonomies]：org 標籤 @xxx → categories，其餘 → tags
+taxonomies = [
+  { name = "tags" },
+  { name = "categories" },
+]
+
+[markdown]
+
+[markdown.highlighting]
+# tabi 有開 CSP，用 class 模式程式碼高亮才不會被擋
+theme = "catppuccin-frappe"
+style = "class"
+
+[extra]
+# 選用功能先全部不開，只留 mailto（tabi 會自動編碼，避免被爬蟲直接抓到）
+email = "talenttb18@gmail.com"
+theme_switcher = false
+copy_button = false
