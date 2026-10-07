@@ -17,6 +17,7 @@ taxonomies = [
 ]
 
 [markdown]
+github_alerts = true
 
 [markdown.highlighting]
 # tabi 有開 CSP，用 class 模式程式碼高亮才不會被擋

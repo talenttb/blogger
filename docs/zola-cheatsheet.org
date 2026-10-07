@@ -57,3 +57,37 @@
 | #+hugo_categories | x               | categories（會蓋掉 =@= filetags）     |
 
 - md 檔名 = org 檔名；不用寫 =#+hugo_section=，預設進 =posts/=
+
+* 內文語法 → 網頁
+| org                                   | md                         | 網頁 HTML                  |
+|---------------------------------------+----------------------------+----------------------------|
+| =*粗體*=                              | =**粗體**=                 | =<strong>=                 |
+| =/斜體/=                              | =_斜體_=                   | =<em>=                     |
+| =_底線_=                              | =<span class="underline">= | =<span class="underline">= |
+| =+刪除線+=                            | =~~刪除線~~=               | =<del>=                    |
+| ~=verbatim=~ ／ =~code~=              | =`code`=                   | =<code>=                   |
+| =H_{2}O= ／ =x^{2}=                   | =<sub>= ／ =<sup>=         | =<sub>= ／ =<sup>=         |
+| =** 二級標題=                         | =## 二級標題=              | =<h2 id="二級標題">=       |
+| =- 項目=                              | =- 項目=                   | =<ul><li>=                 |
+| =1. 項目=                             | =1. 項目=                  | =<ol><li>=                 |
+| =- [ ] 待辦= ／ =- [X] 完成=          | =- [ ]= ／ =- [X]=         | =<input type="checkbox">=  |
+| =[[https://a.com][文字]]=             | =[文字](https://a.com)=    | =<a rel="external">=       |
+| =#+begin_src python=                  | =```python=                | =<pre><code>=（有高亮）    |
+| =: 一行= ／ =#+begin_example=         | =```text=                  | =<pre><code>=              |
+| =#+begin_quote=                       | => 引用=                   | =<blockquote>=             |
+| =#+begin_details= + =#+begin_summary= | =<details>=                | 可點開的摺疊區塊           |
+| org 表格                              | md 表格                    | =<table>=                  |
+| =註[fn:1]= + 文末 =[fn:1] 內容=       | =[^fn:1]=                  | 上標數字＋文末註腳         |
+| =-----=                               | =---=                      | =<hr>=                     |
+
+- 段落：空一行才分段
+- 不能用：=名詞 :: 解釋=（網頁顯示成純文字）、=$數學$=（沒裝 KaTeX）、圖片（目前會讓 zola build 失敗）
+
+* 提示框
+#+begin_quote
+[!NOTE]
+內容
+#+end_quote
+
+- 種類：=NOTE= =TIP= =IMPORTANT= =WARNING= =CAUTION=
+- 網頁 HTML：=<blockquote class="markdown-alert-note">=
