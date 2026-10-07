@@ -57,3 +57,26 @@
 | #+hugo_categories | x               | categories（會蓋掉 =@= filetags）     |
 
 - md 檔名 = org 檔名；不用寫 =#+hugo_section=，預設進 =posts/=
+
+* 角色對話與提示框
+| 寫法                                         | 效果                         |
+|----------------------------------------------+------------------------------|
+| =#+begin_heron= … =#+end_heron=              | 蒼鷺說話，頭像在左           |
+| =#+begin_me= … =#+end_me=                    | 我說話，頭像在左             |
+| 區塊上一行加 =#+attr_html: :class right=     | 頭像換到右邊                 |
+| =#+begin_hottip= … =#+end_hottip=            | 「蒼鷺的 hot tip」提示框     |
+
+#+begin_example
+,#+begin_heron
+……水一直在流，你記下來的是水，還是石頭？
+,#+end_heron
+
+,#+attr_html: :class right
+,#+begin_me
+好問題，我想一下。
+,#+end_me
+#+end_example
+
+- 頭像：=static/avatar-heron.svg=、=static/avatar-me.svg=
+- 樣式：=static/post-layout.css=
+- 目錄：文章有標題就自動產生；視窗寬 1300px 以上固定在左側，較窄時在文章上方
