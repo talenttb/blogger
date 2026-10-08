@@ -11,6 +11,11 @@
                      fm)))
                (advice-add 'ox-zola--transform-frontmatter
                            :filter-return #'my/ox-zola-taxonomies-last)
+               ;; 連結改用 ox-zola 的寫法（跨檔連結 → @/posts/x.md）；圖片一律輸出成 ![alt](src)
+               (defun my/ox-zola-link (link desc info)
+                 (cl-letf (((symbol-function 'org-html-standalone-image-p) #'ignore))
+                   (ox-zola-link link desc info)))
+               (advice-add 'org-hugo-link :override #'my/ox-zola-link)
                ;; 存檔時自動匯出
                (add-hook 'after-save-hook
                          (lambda () (ox-zola-export-wim-to-md t))

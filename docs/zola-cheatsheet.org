@@ -1,23 +1,45 @@
 #+title: Zola Cheatsheet
 
 * 隱藏／刪除文章
-| 目的       | 在 org 裡怎麼做                                | 之後要做的                        |
-|------------+------------------------------------------------+-----------------------------------|
-| 暫時隱藏   | 標題改成 =* TODO 標題=（改回或改 DONE 就公開）  | 存檔即可（md 會帶 =draft = true=） |
-| 暫時隱藏   | =:PROPERTIES:= 加 =:EXPORT_HUGO_DRAFT: true=    | 存檔即可                          |
-| 不匯出     | 標題加 tag =:noexport:=                         | =./scripts/org2md.sh --clean=     |
-| 刪除       | 刪掉該 subtree 或整個 org 檔                    | =./scripts/org2md.sh --clean=     |
+| 目的       | 在 org 裡怎麼做                                | 之後要做的                         |
+|------------+------------------------------------------------+------------------------------------|
+| 暫時隱藏   | 標題改成 =* TODO 標題= （改回或改 DONE 就公開） | 存檔即可（md 會帶 =draft = true= ）|
+| 暫時隱藏   | =:PROPERTIES:= 加 =:EXPORT_HUGO_DRAFT: true=    | 存檔即可                           |
+| 不匯出     | 標題加 tag =:noexport:=                         | =./scripts/org2md.sh --clean=      |
+| 刪除       | 刪掉該 subtree 或整個 org 檔                    | =./scripts/org2md.sh --clean=      |
 
-- 預覽草稿：=zola serve --drafts=
+- 預覽草稿： =zola serve --drafts=
 
 * org2md.sh
-- =./scripts/org2md.sh=：append，匯出／覆蓋 md，不刪檔
-- =./scripts/org2md.sh --clean=：刪掉 =content/= 裡匯出的 md（保留 =_index.md=）後全部重產
+- =./scripts/org2md.sh= ：append，匯出／覆蓋 md，不刪檔
+- =./scripts/org2md.sh --clean= ：刪掉 =content/= 裡匯出的 md（保留 =_index.md= ）後全部重產
+
+* 標題層級
+一個 org 檔多篇（ =*= 底下有 =EXPORT_FILE_NAME= ）：
+| org          | 匯出成                       |
+|--------------+------------------------------|
+| =*=          | 一篇文章（標題文字 = title） |
+| =**=         | =##=                         |
+| =***=        | =###=                        |
+| =****=       | =####=                       |
+| =*****= 以下 | 變成清單，不是標題           |
+
+一篇一個 org 檔（用 =#+title= ）：
+| org         | 匯出成             |
+|-------------+--------------------|
+| =*=         | =##=               |
+| =**=        | =###=              |
+| =***=       | =####=             |
+| =****= 以下 | 變成清單，不是標題 |
+
+- 錨點預設是標題文字（ =#小標題= ）；自訂：該標題 =:PROPERTIES:= 加 =:CUSTOM_ID: intro= → =#intro=
+- =* COMMENT 標題= 或加 tag =:noexport:= ：整段不匯出
+- 一篇一個 org 檔時，小標題寫 =TODO= 不會隱藏，md 會出現 TODO 字樣
 
 * 標題 tag
-- 寫在標題最後：=* 標題 :@blogging:emacs:=
+- 寫在標題最後： =* 標題 :@blogging:emacs:=
 - =@= 開頭 → categories；沒有 =@= → tags
-- 上例匯出成 =categories = ["blogging"]=、=tags = ["emacs"]=
+- 上例匯出成 =categories = ["blogging"]= 、 =tags = ["emacs"]=
 
 * PROPERTIES 可用的 key
 | key                    | 例            | 匯出成                       |
@@ -37,8 +59,8 @@
 | EXPORT_HUGO_LAYOUT     | custom.html   | template（指定模板）         |
 
 * 中文檔名
-- =EXPORT_FILE_NAME= 可用中文：md 檔名是中文，網址會轉成拼音（=/posts/zhong-wen-dang-ming/=）
-- 自己決定網址：加 =EXPORT_HUGO_SLUG=（=EXPORT_ZOLA_SLUG= 沒作用）
+- =EXPORT_FILE_NAME= 可用中文：md 檔名是中文，網址會轉成拼音（ =/posts/zhong-wen-dang-ming/= ）
+- 自己決定網址：加 =EXPORT_HUGO_SLUG= （ =EXPORT_ZOLA_SLUG= 沒作用）
 
 * 一篇一個 org 檔：檔案開頭的 keyword
 | keyword           | 例              | 匯出成                                |
@@ -56,7 +78,7 @@
 | #+hugo_tags       | a b             | tags（會蓋掉 filetags）               |
 | #+hugo_categories | x               | categories（會蓋掉 =@= filetags）     |
 
-- md 檔名 = org 檔名；不用寫 =#+hugo_section=，預設進 =posts/=
+- md 檔名 = org 檔名；不用寫 =#+hugo_section= ，預設進 =posts/=
 
 * 角色對話與提示框
 | 寫法                                         | 效果                         |
@@ -77,6 +99,36 @@
 ,#+end_me
 #+end_example
 
-- 頭像：=static/avatar-heron.svg=、=static/avatar-me.svg=
-- 樣式：=static/post-layout.css=
+- 頭像： =static/avatar-heron.svg= 、 =static/avatar-me.svg=
+- 樣式： =static/post-layout.css=
 - 目錄：文章有標題就自動產生；視窗寬 1300px 以上固定在左側，較窄時在文章上方
+
+* 連結
+| 寫法                             | 結果                                     |
+|----------------------------------+------------------------------------------|
+| =[[https://example.com][文字]]=  | 外部連結                                 |
+| =https://example.com=            | 裸網址也會變連結                         |
+| =[[#intro][文字]]=               | 同篇，跳到 =CUSTOM_ID= 是 intro 的標題   |
+| =[[*標題文字][文字]]=            | 同篇，跳到該標題                         |
+| =[[/posts/other/][文字]]=        | 別篇（用網址， =other= 是對方的 slug）   |
+| =[[file:other.org][文字]]=       | 別篇（連到對方的 org 檔）                |
+| =[[file:other.org::#sec][文字]]= | 別篇，跳到對方 =CUSTOM_ID= 是 sec 的標題 |
+
+* 圖片
+- 圖檔放 =static/= ，網址去掉 =static= ： =static/img/a.svg= → =/img/a.svg=
+- 寫法： =[[/img/a.svg]]= 或 =[[file:../static/img/a.svg]]=
+- 說明文字：圖片上一行加 =#+attr_html: :alt 說明=
+- =#+caption= 和 =:width= 沒有效果
+- 圖檔跟 org 檔放同一個資料夾也可以（ =[[file:a.svg]]= ），匯出時會複製到 =static/ox-hugo/=
+
+* 程式碼
+- 行內： =~code~= 或 ~=verbatim=~ ，都變成 =`code`=
+- 區塊：
+#+begin_example
+,#+begin_src python
+def f(x):
+    return x + 1
+,#+end_src
+#+end_example
+- 區塊不要加 =:hl_lines= 或 =-n= ：語法高亮會失效
+- =: 一行= 和 =#+begin_example= ：沒有語法高亮的程式碼區塊
