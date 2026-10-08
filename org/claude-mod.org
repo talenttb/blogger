@@ -1,0 +1,57 @@
+#+title: claude-mod
+#+date: 2026-10-08
+#+hugo_slug: claude-mod
+#+filetags: :@claude:
+
+* Mod 是什麼
+2026-10-01 推出新的 plugin
+
+帶有 ui 能力的 hook + plugin
+
+[[https://code.claude.com/docs/en/plugins/mods/overview?ref=aiposthub.com][官網]]
+
+** 比較表
+Mod 能做、settings hook 做不到的事。
+
+Mod 的 hook 是 middleware 形式：收到事件後，可以原樣傳下去（ ~next(e)~ ）、改過再傳、或直接回一個結果不往下傳。另外它能透過 ~$~ 呼叫 mods API 主動做事。
+
+*** 改 Claude 讀到的內容
+| 事件                             | 能做什麼                                       | settings hook      |
+|---------------------------------+----------------------------------------------+--------------------|
+| ~prompt.submit~                   | 直接改寫使用者的 prompt，或整個丟棄                | 只能擋或附加 context |
+| ~prompt.compose~ / ~prompt.section~ | 改寫、刪除、重排 system prompt 的段落            | ❌                 |
+| ~prompt.attachment~               | 改寫或拿掉 Claude Code 自己塞給 Claude 的提醒     | ❌                 |
+| ~tool.describe~                   | 改工具描述，或決定工具要預先載入還是放進 tool search | ❌                 |
+| ~skill.prompt~                    | 改 skill 展開後的內容                           | ❌                 |
+| ~attribution.text~                | 改 commit 或 PR 的署名文字                      | ❌                 |
+
+*** 改執行流程
+| 事件                            | 能做什麼                                          | settings hook                      |
+|--------------------------------+-------------------------------------------------+------------------------------------|
+| ~tool.call~                      | 不執行工具，直接回一個結果給 Claude                   | 只能放行、擋、改參數                   |
+| ~tool.check~                     | 在規則、權限模式和 ~PreToolUse~ 都判定完之後，再做最後裁決 | ❌                                 |
+| ~turn.step~                      | 每一次送給模型的請求都能換模型或調 effort              | 只有 ~PreModelSwitch~ 能擋使用者手動切換 |
+| ~agent.offer~ / ~agent.spawn~      | 對 Claude 隱藏某種 subagent，或改它用的模型          | 只能觀察                             |
+| ~session.append~                 | 在寫入前改寫存進對話紀錄的內容                        | ~MessageDisplay~ 只改顯示              |
+| ~session.send~ / ~session.receive~ | 攔截跨 session 的訊息                             | ❌                                 |
+| ~config.set~                     | 擋下或改寫 ~/config~ 的設定變更                       | ~ConfigChange~ 只能擋                 |
+
+*** 主動做事（settings hook 只能被動回應）
+- ~$.command.register~ ：註冊 ~/指令~ ，執行時不經過 Claude 的回合。
+- ~$.tool.register~ 、 ~$.agent.register~ ：新增工具或 subagent 類型。
+- ~$.prompt.submit~ ：自己送出 prompt，開啟新回合；用 ~asUser: true~ 可以當成使用者本人送出。
+- ~$.model.complete~ 、 ~$.model.classify~ ：直接呼叫模型。
+- ~$.clock.every~ ：設定時器，做背景定時工作。
+- ~$.state~ 、 ~$.store~ ：保存狀態，前者在同一個 session 內共用，後者整台機器的所有 session 共用。
+- ~$.ui.*~ ：畫面板、跳通知、詢問使用者。
+
+*** 管其他擴充
+- ~plugin.register~ ：其他 mod 載入時拒絕它，公司拿來做政策 mod 就是靠這個。
+- ~classic.<Event>~ ：攔截 settings hook 本身，例如 ~classic.PreToolUse~ 。
+- 每個 mods API 方法本身也是事件，所以能攔截之後才跑的 mod 的 API 呼叫，例如禁止它們連網。
+
+
+* 心得
+有 UI ？不過這個應該是相對小的影響
+直覺上是透過管理 plugin 而不是 settings.json，不要埋的那麼深入同時也把能力增強
+最主要應該是主動與被動的差別，以前 hook 偏向守門員的角色(被動)，現在 mod 可以(主動)做更多事情了
