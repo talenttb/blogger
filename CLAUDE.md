@@ -9,3 +9,4 @@
 6. **文件只寫用法**：README 這類文件不寫多餘的說明。
 7. **實驗文章測試完要清乾淨**：測試用的 org 檔一律加 `#+hugo_draft: true`（subtree 用 `:EXPORT_HUGO_DRAFT: true`），忘了刪也不會發布；測試完刪掉 org 檔，再跑 `./scripts/org2md.sh --clean` 清掉 `content/` 裡匯出的 md。
 8. **merge 完成要刪 ledger**：分支 merge 進 main 後，把這次討論的 ledger（`~/.claude/ledgers/blogger-*.md`）刪除。
+9. **辨識圖片只輸出到 terminal**：要把圖片轉成文字或 org 格式時，直接在回覆裡用 code block 顯示結果，不要寫進檔案。使用者會自己複製、貼上。
