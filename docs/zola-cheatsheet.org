@@ -37,7 +37,8 @@
 - 一篇一個 org 檔時，小標題寫 =TODO= 不會隱藏，md 會出現 TODO 字樣
 
 * 標題 tag
-- 寫在標題最後： =* 標題 :@blogging:emacs:=
+- 一個標題一篇（subtree）：寫在標題最後： =* 標題 :@blogging:emacs:=
+- 一個檔案一篇：檔案開頭加 =#+filetags: :@blogging:emacs:=
 - =@= 開頭 → categories；沒有 =@= → tags
 - 上例匯出成 =categories = ["blogging"]= 、 =tags = ["emacs"]=
 
