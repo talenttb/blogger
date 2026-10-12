@@ -41,6 +41,8 @@
 - 一個檔案一篇：檔案開頭加 =#+filetags: :@blogging:emacs:=
 - =@= 開頭 → categories；沒有 =@= → tags
 - 上例匯出成 =categories = ["blogging"]= 、 =tags = ["emacs"]=
+- category（ =@= ）：一篇一個，大分類，總數少；tabi 文章頁不顯示，只出現在 =/categories/=
+- tag：一篇可以多個，寫具體主題；顯示在文章頁，可以點
 
 * PROPERTIES 可用的 key
 | key                    | 例            | 匯出成                       |
