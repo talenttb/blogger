@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: 我說話（頭像在左）
+# key: aside-me
+# --
+#+begin_me
+$0
+#+end_me

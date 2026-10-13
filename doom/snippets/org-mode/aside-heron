@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: 蒼鷺說話（頭像在左）
+# key: aside-heron
+# --
+#+begin_heron
+$0
+#+end_heron

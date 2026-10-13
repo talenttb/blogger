@@ -84,12 +84,12 @@
 - md 檔名 = org 檔名；不用寫 =#+hugo_section= ，預設進 =posts/=
 
 * 角色對話與提示框
-| 寫法                                         | 效果                         |
-|----------------------------------------------+------------------------------|
-| =#+begin_heron= … =#+end_heron=              | 蒼鷺說話，頭像在左           |
-| =#+begin_me= … =#+end_me=                    | 我說話，頭像在左             |
-| 區塊上一行加 =#+attr_html: :class right=     | 頭像換到右邊                 |
-| =#+begin_hottip= … =#+end_hottip=            | 「蒼鷺的 hot tip」提示框     |
+| 寫法                                         | 效果                         | snippet                                  |
+|----------------------------------------------+------------------------------+------------------------------------------|
+| =#+begin_heron= … =#+end_heron=              | 蒼鷺說話，頭像在左           | =aside-heron=                            |
+| =#+begin_me= … =#+end_me=                    | 我說話，頭像在左             | =aside-me=                               |
+| 區塊上一行加 =#+attr_html: :class right=     | 頭像換到右邊                 | =aside-heron-right= 、 =aside-me-right=  |
+| =#+begin_hottip= … =#+end_hottip=            | 「蒼鷺的 hot tip」提示框     | =aside-hottip=                           |
 
 #+begin_example
 ,#+begin_heron

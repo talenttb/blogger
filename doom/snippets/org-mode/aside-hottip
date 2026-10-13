@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: 蒼鷺的 hot tip 提示框
+# key: aside-hottip
+# --
+#+begin_hottip
+$0
+#+end_hottip

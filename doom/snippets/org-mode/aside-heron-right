@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: 蒼鷺說話（頭像在右）
+# key: aside-heron-right
+# --
+#+attr_html: :class right
+#+begin_heron
+$0
+#+end_heron

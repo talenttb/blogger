@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: zola post (all properties)
+# key: zpostprops
+# --
+#+title: ${1:`(file-name-base buffer-file-name)`}
+#+date: `(format-time-string "%Y-%m-%d")`
+#+filetags: $2
+# #+hugo_slug:
+# #+hugo_lastmod:
+# #+hugo_draft: true
+# #+description:
+# #+author:
+# #+hugo_weight:
+# #+hugo_aliases:
+# #+hugo_tags:
+# #+hugo_categories:
+
+$0

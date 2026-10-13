@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: 我說話（頭像在右）
+# key: aside-me-right
+# --
+#+attr_html: :class right
+#+begin_me
+$0
+#+end_me
