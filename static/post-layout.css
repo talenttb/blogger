@@ -119,26 +119,65 @@
     font-weight: 700;
 }
 
-/* ---------- 標題間距：tabi 的標題沒有下方間距，連續標題（沒有內文的小節）會擠在一起 ---------- */
+/* ---------- 文章標題：h2/h4/h6 底線、h3/h5 直線，越深越小越灰，並依層級縮排 ---------- */
+.e-content {
+    --indent-step: 2.5rem;
+}
 .e-content h2,
 .e-content h3,
-.e-content h4 {
+.e-content h4,
+.e-content h5,
+.e-content h6 {
+    margin-top: 1.6rem;
+    margin-bottom: 0.5rem;
     line-height: 1.4;
 }
 .e-content h2 {
-    margin-top: 3rem;
-    margin-bottom: 0.8rem;
-    font-size: 1.7rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 2px solid var(--meta-color);
+    font-weight: 700;
+    font-size: 1.9rem;
 }
 .e-content h3 {
-    margin-top: 2.2rem;
-    margin-bottom: 0.6rem;
-    font-size: 1.35rem;
+    padding-inline-start: 1.1rem;
+    border-inline-start: 6px double var(--primary-color);
+    font-weight: 700;
+    font-size: 1.5rem;
 }
 .e-content h4 {
-    margin-top: 1rem;
-    margin-bottom: 0.4rem;
+    width: fit-content;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid var(--meta-color);
+    font-weight: 600;
+    font-size: 1.25rem;
+}
+.e-content h5 {
+    padding-inline-start: 0.9rem;
+    border-inline-start: 2px solid var(--primary-color);
+    font-weight: 600;
     font-size: 1.05rem;
+}
+.e-content h6 {
+    width: fit-content;
+    padding-bottom: 0.2rem;
+    border-bottom: 1px dotted var(--divider-color);
+    color: var(--meta-color);
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+/* 縮排：標題本身＋後面最多 4 個非標題元素（HTML 沒有把一節包起來，只能用相鄰選擇器） */
+.e-content :is(h3, h3 + :not(h1, h2, h3, h4, h5, h6), h3 + :not(h1, h2, h3, h4, h5, h6) + :not(h1, h2, h3, h4, h5, h6), h3 + :not(h1, h2, h3, h4, h5, h6) + :not(h1, h2, h3, h4, h5, h6) + :not(h1, h2, h3, h4, h5, h6), h3 + :not(h1, h2, h3, h4, h5, h6) + :not(h1, h2, h3, h4, h5, h6) + :not(h1, h2, h3, h4, h5, h6) + :not(h1, h2, h3, h4, h5, h6)) {
+    margin-inline-start: calc(1 * var(--indent-step));
+}
+.e-content :is(h4, h4 + :not(h1, h2, h3, h4, h5, h6), h4 + :not(h1, h2, h3, h4, h5, h6) + :not(h1, h2, h3, h4, h5, h6), h4 + :not(h1, h2, h3, h4, h5, h6) + :not(h1, h2, h3, h4, h5, h6) + :not(h1, h2, h3, h4, h5, h6), h4 + :not(h1, h2, h3, h4, h5, h6) + :not(h1, h2, h3, h4, h5, h6) + :not(h1, h2, h3, h4, h5, h6) + :not(h1, h2, h3, h4, h5, h6)) {
+    margin-inline-start: calc(2 * var(--indent-step));
+}
+.e-content :is(h5, h5 + :not(h1, h2, h3, h4, h5, h6), h5 + :not(h1, h2, h3, h4, h5, h6) + :not(h1, h2, h3, h4, h5, h6), h5 + :not(h1, h2, h3, h4, h5, h6) + :not(h1, h2, h3, h4, h5, h6) + :not(h1, h2, h3, h4, h5, h6), h5 + :not(h1, h2, h3, h4, h5, h6) + :not(h1, h2, h3, h4, h5, h6) + :not(h1, h2, h3, h4, h5, h6) + :not(h1, h2, h3, h4, h5, h6)) {
+    margin-inline-start: calc(3 * var(--indent-step));
+}
+.e-content :is(h6, h6 + :not(h1, h2, h3, h4, h5, h6), h6 + :not(h1, h2, h3, h4, h5, h6) + :not(h1, h2, h3, h4, h5, h6), h6 + :not(h1, h2, h3, h4, h5, h6) + :not(h1, h2, h3, h4, h5, h6) + :not(h1, h2, h3, h4, h5, h6), h6 + :not(h1, h2, h3, h4, h5, h6) + :not(h1, h2, h3, h4, h5, h6) + :not(h1, h2, h3, h4, h5, h6) + :not(h1, h2, h3, h4, h5, h6)) {
+    margin-inline-start: calc(4 * var(--indent-step));
 }
 
 /* ---------- 手機：頭像縮小 ---------- */
@@ -147,5 +186,8 @@
     .me {
         --avatar-size: 40px;
         --avatar-gap: 12px;
+    }
+    .e-content {
+        --indent-step: 1.25rem;
     }
 }
