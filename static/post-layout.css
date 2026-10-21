@@ -140,7 +140,7 @@
 }
 .e-content h3 {
     padding-inline-start: 1.1rem;
-    border-inline-start: 6px double var(--primary-color);
+    border-inline-start: 4px solid var(--primary-color);
     font-weight: 700;
     font-size: 1.5rem;
 }
@@ -153,7 +153,7 @@
 }
 .e-content h5 {
     padding-inline-start: 0.9rem;
-    border-inline-start: 2px solid var(--primary-color);
+    border-inline-start: 2px solid color-mix(in srgb, var(--primary-color) 45%, transparent);
     font-weight: 600;
     font-size: 1.05rem;
 }
