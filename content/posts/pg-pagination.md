@@ -27,8 +27,6 @@ draft = false
 
 #### where id (單欄或是多欄等混合條件搜尋) + offset / limit {#where-id--單欄或是多欄等混合條件搜尋--plus-offset-limit}
 
-**\***
-
 
 ### 範圍分類 {#範圍分類}
 
@@ -69,20 +67,20 @@ draft = false
 ### 簡易檢核表？ {#簡易檢核表}
 
 -   [ ] 需要頁數
+
     要精準嗎？指定到某一頁？
 
     快到慢(粗略到精準)
 
     1.  pg_class.reltuples
-
     2.  EXPLAIN Plan Rows(可 WHERE；CREATE STATISTICS、SET STATISTICS 加強)
-
     3.  pg_stats histogram_bounds(百分比跳頁，不可 WHERE[^fn:1])
-
     4.  TABLESAMPLE SYSTEM(可 WHERE，看資料所以準，稀少條件誤差大；tsm_system_rows/time 控成本)
 -   [ ] 排序能否建 index
+
     如果不能建 index，通常是情境或是資料的類型要調整
 -   [ ] 對象是誰
+
     人、API、報表等
 
-[^fn:1]: [cluade chat](https://claude.ai/artifact/TtLrVSAWPjAhLyYg2WK3qR#b791aa39-6d9e.mka7drd4bsd.11873)
+[^fn:1]: [claude chat](https://claude.ai/artifact/TtLrVSAWPjAhLyYg2WK3qR#b791aa39-6d9e.mka7drd4bsd.11873)
