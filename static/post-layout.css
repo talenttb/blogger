@@ -120,17 +120,25 @@
 }
 
 /* ---------- 標題間距：tabi 的標題沒有下方間距，連續標題（沒有內文的小節）會擠在一起 ---------- */
+.e-content h2,
+.e-content h3,
+.e-content h4 {
+    line-height: 1.4;
+}
 .e-content h2 {
-    margin-top: 2rem;
-    margin-bottom: 0.5rem;
+    margin-top: 3rem;
+    margin-bottom: 0.8rem;
+    font-size: 1.7rem;
 }
 .e-content h3 {
-    margin-top: 1.5rem;
-    margin-bottom: 0.4rem;
+    margin-top: 2.2rem;
+    margin-bottom: 0.6rem;
+    font-size: 1.35rem;
 }
 .e-content h4 {
     margin-top: 1rem;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.4rem;
+    font-size: 1.05rem;
 }
 
 /* ---------- 手機：頭像縮小 ---------- */
