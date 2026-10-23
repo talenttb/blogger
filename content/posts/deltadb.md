@@ -22,12 +22,12 @@ draft = false
 -   git repo 中的 remote url 負責確認協同者能看到，然後會依賴 cloudflare 中各種 services 啟動同步做分發
 -   使用上想像成是 undo tree 或是 google docs 等線上同步服務，但是顆粒度&amp;可以看到的內容更豐富
 
-    <div class="heron">
+<div class="heron">
 
-    agent 改到一半都可以任意回溯的版本；
-    每次對話 agent 有改程式就會 commit，然後我們對應的 restore
+agent 改到一半都可以任意回溯的版本；
+每次對話 agent 有改程式就會 commit，然後我們對應的 restore
 
-    </div>
+</div>
 
 <div class="right me">
 
