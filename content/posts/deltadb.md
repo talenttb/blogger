@@ -4,7 +4,7 @@ author = ["Liyu"]
 date = 2026-10-23
 draft = false
 [taxonomies]
-  tags = ["DeltaDB"]
+  tags = ["deltadb", "crdt"]
 +++
 
 ## DeltaDB 初探 {#deltadb-初探}
@@ -29,7 +29,7 @@ draft = false
 
     </div>
 
-<div class="me">
+<div class="right me">
 
 累～
 

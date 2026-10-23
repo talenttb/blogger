@@ -1,6 +1,6 @@
 #+title: deltadb
 #+date: 2026-10-23
-#+filetags: :DeltaDB:
+#+filetags: :deltadb:crdt:
 
 * DeltaDB 初探
 看到有人分享這個專案[fn:1]，簡單的紀錄我的想法
@@ -18,7 +18,7 @@
   每次對話 agent 有改程式就會 commit，然後我們對應的 restore
   #+end_heron
 
-  #+attr_html: :class right
+#+attr_html: :class right
 #+begin_me
 累～
 #+end_me
