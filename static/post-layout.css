@@ -1,11 +1,20 @@
 /* 文章版面：側邊目錄、hottip 提示框、角色對話（org 的 #+begin_heron / #+begin_me / #+begin_hottip） */
 
+/* ---------- 內文：一行 42 個中文字、行高 1.6 ---------- */
+article.h-entry {
+    max-width: 42em;
+}
+.e-content p,
+.e-content li {
+    line-height: 1.6;
+}
+
 /* ---------- 側邊目錄：寬螢幕固定在文章左側，窄螢幕維持 tabi 原本放在文章上方 ---------- */
-@media (min-width: 1300px) {
+@media (min-width: 1480px) {
     article.h-entry > .toc-container {
         position: fixed;
         top: 7rem;
-        left: max(1rem, calc(50vw - 380px - 15rem));  /* 文章欄約 760px 寬，目錄放在它左邊 2rem */
+        left: max(1rem, calc(50vw - 21rem - 15rem));  /* 文章欄 42em（寬螢幕 840px），目錄放在它左邊 2rem */
         width: 13rem;
         max-height: calc(100vh - 9rem);
         overflow-y: auto;
